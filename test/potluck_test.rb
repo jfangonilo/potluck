@@ -59,15 +59,14 @@ class PotluckTest < Minitest::Test
     assert_instance_of Hash, @potluck.menu
   end
 
-  def test_menu_ratio
-    skip
+  def test_ratio
     @potluck.add_dish(@couscous_salad)
     @potluck.add_dish(@cocktail_meatballs)
     @potluck.add_dish(@summer_pizza)
     @potluck.add_dish(@roast_pork)
     @potluck.add_dish(@candy_salad)
     @potluck.add_dish(@bean_dip)
-    require "pry"; binding.pry
-    assert_equal 50.0, @potluck.ratio(:appetizer)
+
+    assert_equal 50, @potluck.ratio(:appetizer)
   end
 end
