@@ -16,16 +16,18 @@ class Potluck
   end
 
   def menu
-    menu = @dishes.sort_by do |dish|
+    alpha_sort = @dishes.sort_by do |dish|
       dish.name
     end
 
-    menu.group_by do |dish|
+    alpha_sort.group_by do |dish|
       dish.category
     end
   end
 
   def ratio(category)
-
+    total_in_category = menu[category].count.to_f
+    total_dishes = @dishes.count.to_f
+    ((total_in_category / total_dishes) * 100).floor(1)
   end
 end
