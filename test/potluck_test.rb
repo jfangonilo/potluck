@@ -11,6 +11,7 @@ class PotluckTest < Minitest::Test
     @summer_pizza = Dish.new("Summer Pizza", :appetizer)
     @roast_pork = Dish.new("Roast Pork", :entre)
     @candy_salad = Dish.new("Candy Salad", :dessert)
+    @bean_dip = Dish.new("Bean Dip", :appetizer)
   end
 
   def test_is_has_a_class
@@ -45,5 +46,28 @@ class PotluckTest < Minitest::Test
     assert_equal [@couscous_salad, @summer_pizza], @potluck.get_all_from_category(:appetizer)
     assert_equal @couscous_salad, @potluck.get_all_from_category(:appetizer).first
     assert_equal "Couscous Salad", @potluck.get_all_from_category(:appetizer).first.name
+  end
+
+  def test_menu
+    @potluck.add_dish(@couscous_salad)
+    @potluck.add_dish(@cocktail_meatballs)
+    @potluck.add_dish(@summer_pizza)
+    @potluck.add_dish(@roast_pork)
+    @potluck.add_dish(@candy_salad)
+    @potluck.add_dish(@bean_dip)
+
+    assert_instance_of Hash, @potluck.menu
+  end
+
+  def test_menu_ratio
+    skip
+    @potluck.add_dish(@couscous_salad)
+    @potluck.add_dish(@cocktail_meatballs)
+    @potluck.add_dish(@summer_pizza)
+    @potluck.add_dish(@roast_pork)
+    @potluck.add_dish(@candy_salad)
+    @potluck.add_dish(@bean_dip)
+    require "pry"; binding.pry
+    assert_equal 50.0, @potluck.ratio(:appetizer)
   end
 end
